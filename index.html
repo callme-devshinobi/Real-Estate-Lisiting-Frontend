@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyProperty - Find Your Dream Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" onclick="showPage('home', event)">
+                <i class="bi bi-house-door-fill text-primary"></i> MyProperty
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home', event)">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about', event)">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact', event)">Contact Us</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home-page" class="page-content">
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center hero-content">
+                        <h1 class="display-4 fw-bold mb-3">Find Your Dream Home</h1>
+                        <p class="lead mb-4">Explore the best properties for sale and rent</p>
+                        <div class="search-bar d-flex flex-wrap gap-2">
+                            <div class="flex-grow-1">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                                    <input type="text" class="form-control" placeholder="Location..." id="hero-location">
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <select class="form-select" id="hero-type">
+                                    <option value="">Property Type</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="house">House</option>
+                                    <option value="villa">Villa</option>
+                                </select>
+                            </div>
+                            <div class="flex-grow-1">
+                                <select class="form-select" id="hero-price">
+                                    <option value="">Price Range</option>
+                                    <option value="0-100000">₦0 - ₦100,000</option>
+                                    <option value="100000-500000">₦100,000 - ₦500,000</option>
+                                    <option value="500000+">₦500,000+</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-danger px-4" onclick="searchProperties()">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <h2 class="mb-4">Featured Properties</h2>
+                <div class="row g-4" id="featured-properties"></div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary" onclick="showPage('listings', event)">View All Properties</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="listings-page" class="page-content d-none">
+        <div class="container py-4">
+            <h2 class="mb-4">Property Listings</h2>
+            <div class="filter-section mb-4">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Location..." id="filter-location">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select" id="filter-type">
+                            <option value="">Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select" id="filter-price">
+                            <option value="">Price Range</option>
+                            <option value="0-100000">₦0 - ₦100k</option>
+                            <option value="100000-500000">₦100k - ₦500k</option>
+                            <option value="500000+">₦500k+</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary w-100" onclick="applyFilters()">
+                            <i class="bi bi-funnel"></i> Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4" id="all-properties"></div>
+        </div>
+    </div>
+
+    <div id="detail-page" class="page-content d-none">
+        <div class="container py-5" id="detail-content"></div>
+    </div>
+
+    <div id="about-page" class="page-content d-none">
+        <div class="page-header">
+            <div class="container text-center">
+                <h1 class="display-5 fw-bold">About Us</h1>
+                <p class="lead">Learn more about MyProperty</p>
+            </div>
+        </div>
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h3 class="mb-3">Who We Are</h3>
+                    <p class="text-muted">MyProperty is dedicated to helping you find the perfect home. Whether you're buying, selling, or renting, our platform is designed to provide you with the best real estate options and expert guidance.</p>
+                    <h3 class="mb-3 mt-4">Our Mission</h3>
+                    <p class="text-muted">Our mission is to make the process of finding or selling a property as easy and efficient as possible. We offer a seamless experience with the most comprehensive listings and personalized support to meet your real estate needs.</p>
+                    <h3 class="mb-3 mt-4">Our Vision</h3>
+                    <p class="text-muted">We envision a world where finding your dream home is simple, transparent, and accessible to everyone — no matter where they are on their property journey.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600" class="img-fluid rounded" alt="Interior">
+                        </div>
+                        <div class="col-12">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5>About Us</h5>
+                                    <p class="text-muted small mb-0">MyProperty is dedicated to helping you find the perfect home. Whether you're buying, renting, or selling, our platform is designed to provide you with the best options and expert guidance.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600" class="img-fluid rounded" alt="Property">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-page" class="page-content d-none">
+        <div class="page-header" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200') center/cover;">
+            <div class="container text-center">
+                <h1 class="display-5 fw-bold">Contact Us</h1>
+                <p class="lead">Get in touch with us</p>
+            </div>
+        </div>
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <form onsubmit="handleContactSubmit(event)">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" placeholder="Name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Subject</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-chat-left-text"></i></span>
+                                    <input type="text" class="form-control" placeholder="Subject" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="5" placeholder="Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h4 class="mb-3">Similar Properties</h4>
+                    <div id="similar-properties" class="d-flex flex-column gap-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="agent-overlay" id="agentOverlay">
+        <div class="agent-overlay-box">
+            <button class="close-btn" onclick="closeAgentOverlay()"><i class="bi bi-x"></i></button>
+            <div id="overlay-content"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-inline mb-3">
+                        <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none small">Home</a></li>
+                        <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none small">Terms</a></li>
+                        <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none small">Privacy</a></li>
+                        <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none small">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-muted me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-muted"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center text-muted small mb-0">&copy; 2024 MyProperty. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
