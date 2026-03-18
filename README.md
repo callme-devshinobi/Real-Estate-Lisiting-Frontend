@@ -9,7 +9,8 @@ MyProperty is a modern single-page application (SPA) for browsing real estate li
 ## 🚀 Features
 
 * Responsive design for mobile, tablet, and desktop
-* Hero section with search functionality
+* Hero section with interactive search bar
+* Property search and filtering functionality
 * Featured property listings
 * Dynamic UI updates using JavaScript
 * Clean and modern layout using Bootstrap
@@ -32,7 +33,10 @@ MyProperty is a modern single-page application (SPA) for browsing real estate li
 project-folder/
 │── index.html
 │── styles.css
-│── main.js
+│── script.js
+│── assets/
+│   ├── images/
+│   └── icons/
 ```
 
 ---
@@ -58,8 +62,8 @@ cd Real-Estate-Lisiting-Frontend
 ## 💡 Usage
 
 * Browse featured properties on the homepage
-* Use the search bar to filter listings
-* Click on properties to view more details (if implemented)
+* Use the search bar to search and filter properties
+* Interact with listings dynamically
 
 ---
 
@@ -76,7 +80,7 @@ The project is fully responsive and optimized for:
 ## 🎯 Future Improvements
 
 * Add backend integration (API or database)
-* Implement advanced search filters
+* Implement advanced filtering options
 * Add authentication (login/signup)
 * Property detail pages
 * Save/favorite properties feature
