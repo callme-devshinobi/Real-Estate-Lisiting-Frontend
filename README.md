@@ -34,9 +34,6 @@ project-folder/
 │── index.html
 │── styles.css
 │── script.js
-│── assets/
-│   ├── images/
-│   └── icons/
 ```
 
 ---
